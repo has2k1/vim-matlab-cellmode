@@ -18,7 +18,7 @@
  ##    ## ##       ##       ##       ##     ## ##     ## ##     ## ##       ~
   ######  ######## ######## ######## ##     ##  #######  ########  ######## ~
 
-    Work in vim and have your chunks of code excuted in the matlab window
+    Work in vim and have your chunks of code executed in the matlab window
 
 
 =============================================================================
@@ -36,11 +36,11 @@ CONTENTS                                                     *MatlabCellmode*
 
 The plugin uses xdotool to interact with the matlab window and it needs to
 be able to uniquely identify the matlab window. You can help it by setting
-the title the matlab window eg: >
+the title the matlab window for example.: >
 
    let g:matlabcellmode_window_title='MATLAB  R2012a'
 
-You can use a partial match eg: >
+You can use a partial match for example: >
 
    let g:matlabcellmode_window_title='MATLAB  R20'
 
@@ -80,7 +80,7 @@ Here is an example of how you could map to the commands: >
    vnoremap \<silent> \l :MatlabCellmode_SendSelected<cr>
 
 Better still, you can use |autocmd|s so that the mappings are only available
-when editting matlab files. e.g: >
+when editing matlab files. e.g.: >
 
    augroup MatlabCellmode
       autocmd!
