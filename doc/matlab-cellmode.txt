@@ -1,0 +1,104 @@
+*matlab-cellmode.txt* Emulating Matlab cellmode in vim
+
+          ##     ##    ###    ######## ##          ###    ########          ~
+          ###   ###   ## ##      ##    ##         ## ##   ##     ##         ~
+          #### ####  ##   ##     ##    ##        ##   ##  ##     ##         ~
+          ## ### ## ##     ##    ##    ##       ##     ## ########          ~
+          ##     ## #########    ##    ##       ######### ##     ##         ~
+          ##     ## ##     ##    ##    ##       ##     ## ##     ##         ~
+          ##     ## ##     ##    ##    ######## ##     ## ########          ~
+
+                                   #######                                  ~
+
+  ######  ######## ##       ##       ##     ##  #######  ########  ######## ~
+ ##    ## ##       ##       ##       ###   ### ##     ## ##     ## ##       ~
+ ##       ##       ##       ##       #### #### ##     ## ##     ## ##       ~
+ ##       ######   ##       ##       ## ### ## ##     ## ##     ## ######   ~
+ ##       ##       ##       ##       ##     ## ##     ## ##     ## ##       ~
+ ##    ## ##       ##       ##       ##     ## ##     ## ##     ## ##       ~
+  ######  ######## ######## ######## ##     ##  #######  ########  ######## ~
+
+    Work in vim and have your chunks of code excuted in the matlab window
+
+
+=============================================================================
+CONTENTS                                                     *MatlabCellmode*
+
+1. Usage ....................................... |MatlabCellmode-usage|
+2. Mappings .................................... |MatlabCellmode-mappings|
+3. License ..................................... |MatlabCellmode-license|
+4. Contributing ................................ |MatlabCellmode-contributing|
+5. Credits ..................................... |MatlabCellmode-credits|
+
+
+=============================================================================
+1. Usage                                               *MatlabCellmode-usage*
+
+The plugin uses xdotool to interact with the matlab window and it needs to
+be able to uniquely identify the matlab window. You can help it by setting
+the title the matlab window eg: >
+
+   let g:matlabcellmode_window_title='MATLAB  R2012a'
+
+You can use a partial match eg: >
+
+   let g:matlabcellmode_window_title='MATLAB  R20'
+
+This is the default setting and should work for most users for years to
+come.
+
+The plugin automatically highlights the lines that mark the beginning
+of each cell.
+
+The commands that interact with matlab are:
+
+                                                    *:MatlabCellmodeSendFile*
+:MatlabCellmodeSendFile                Send current file to matlab window
+                                       for run all the lines in the file.
+
+                                                    *:MatlabCellmodeSendFile*
+:MatlabCellmodeSendCell                Send current cell to matlab window
+                                       and run all the lines in the cell.
+
+                                                    *:MatlabCellmodeSendLine*
+:MatlabCellmodeSendLine                Send current line to matlab window
+                                       and run it.
+
+                                                *:MatlabCellmodeSendSelected*
+:MatlabCellmodeSendSelected            Send the selected lines to the
+                                       matlab window and run them.
+
+=============================================================================
+2. Mappings                                         *MatlabCellmode-mappings*
+
+
+Here is an example of how you could map to the commands: >
+
+   nnoremap <silent> \m :MatlabCellmodeSendFile<cr>
+   nnoremap <silent> \c :MatlabCellmodeSendCell<cr>
+   nnoremap <silent> \l :MatlabCellmodeSendLine<cr>
+   vnoremap \<silent> \l :MatlabCellmode_SendSelected<cr>
+
+Better still, you can use |autocmd|s so that the mappings are only available
+when editting matlab files. e.g: >
+
+   augroup MatlabCellmode
+      autocmd!
+      " Matlab cellmode
+      autocmd FileType matlab nnoremap <silent> \m :MatlabCellmodeSendFile<cr>
+      autocmd FileType matlab nnoremap <silent> \c :MatlabCellmodeSendCell<cr>
+      autocmd FileType matlab nnoremap <silent> \l :MatlabCellmodeSendLine<cr>
+      autocmd FileType matlab vnoremap
+               \<silent> \l :MatlabCellmode_SendSelected<cr>
+   augroup END
+
+=============================================================================
+4. Contributing                                 *MatlabCellmode-contributing*
+
+https://github.com/has2k1/vim-matlab-cellmode/issues
+
+=============================================================================
+5. Credits                                           *MatlabCellmode-credits*
+http://bit.ly/ZhZEYr
+
+vim:tw=78:ts=8:ft=help:norl:
